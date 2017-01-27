@@ -1,0 +1,10 @@
+{
+    "name": "jokechat/dingtalk",
+    "description": "dingtalk library",
+    "type": "library",
+    "require": {
+        "guzzle/http": "^3.9"
+    },
+    "license": "DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE",
+    "minimum-stability": "dev"
+}
