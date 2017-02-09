@@ -3,8 +3,11 @@
     "description": "dingtalk library",
     "type": "library",
     "require": {
-        "guzzle/http": "^3.9"
+        "mashape/unirest-php": "3.*"
     },
     "license": "DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload" : {
+	"psr-4" : {"DingTalk\\": "src/DingTalk"}
+    }
 }
