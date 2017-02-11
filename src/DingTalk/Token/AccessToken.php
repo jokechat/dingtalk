@@ -52,12 +52,10 @@ class AccessToken
 	    $queryUrl 				    = $ddconfig['gettoken_url'];
 	    $param["corpid"] 	    = $ddconfig['corpid'];
 	    $param["corpsecret"] 	= $ddconfig['corpsecret'];
-	    
 	    $headers                   = array('Accept' => 'application/json');
 	    $response                  = Request::get($queryUrl,$headers,$param);
-	    
-	    $result                        = $response->body;
-	    $result->time              = time();
+	    $result                       = $response->body;
+	    $result->time             = time();
 	    if (property_exists($result, "access_token")) 
 	    {
 	        $accessToken   = $result->access_token;
