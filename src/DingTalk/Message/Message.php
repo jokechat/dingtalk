@@ -23,21 +23,21 @@ class Message
         if (is_array($userids)) {
             $userids    = implode("|", $userids);
         }
-        $ddconfig          = Config::getConfig();
-        $access_token   = AccessToken::getAccessToken();        
+        $ddconfig           = Config::getConfig();
+        $access_token       = AccessToken::getAccessToken();
         $queryUrl           = $ddconfig['message_send'].'?access_token='.$access_token;
-        $params            = array();
-        $params['touser']                  = $userids;
-        $params['agentid']                = $agentid;
-        $params['msgtype']               = $content['type'];
-        $params[$content['type']]      = $content; 
+        $params             = array();
+        $params['touser']              = $userids;
+        $params['agentid']             = $agentid;
+        $params['msgtype']             = $content['type'];
+        $params[$content['type']]      = $content;
         // 设置请求头信息
-        $headers[CURLOPT_HTTPHEADER]  	= ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
+        $headers[CURLOPT_HTTPHEADER]   = ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
         Curl::setOption($headers);
         $result         = Curl::callWebServer($queryUrl,json_encode($params),"post");
         return $result;
     }
-    
+
     /**
      * 向部门发送企业会话消息
      * @param string| array $toparty 部门id,多个id以|分隔
@@ -50,16 +50,16 @@ class Message
         if (is_array($toparty)) {
             $toparty    = implode("|", $toparty);
         }
-        $ddconfig                           = Config::getConfig();
+        $ddconfig                       = Config::getConfig();
         $access_token                   = AccessToken::getAccessToken();
-        $queryUrl                           = $ddconfig['message_send']."access_token=".$access_token;
-        $params                            = array();
-        $params['toparty']               = $toparty;
+        $queryUrl                       = $ddconfig['message_send']."access_token=".$access_token;
+        $params                         = array();
+        $params['toparty']              = $toparty;
         $params['agentid']              = $agentid;
-        $params['msgtype']             = $content['type'];
+        $params['msgtype']              = $content['type'];
         $params[$content['type']]['content']      = $content['content'];
         // 设置请求头信息
-        $headers[CURLOPT_HTTPHEADER]  	= ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
+        $headers[CURLOPT_HTTPHEADER]  	 = ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
         Curl::setOption($headers);
         $result             = Curl::callWebServer($queryUrl,json_encode($params),"post");
         return $result;

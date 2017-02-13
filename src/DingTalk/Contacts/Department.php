@@ -15,18 +15,18 @@ class Department
      */
     public function list($id)
     {
-        $ddconfig              = Config::getConfig();
+        $ddconfig           = Config::getConfig();
         $access_token       = AccessToken::getAccessToken();
-        $queryUrl               = $ddconfig['department_list'];
-        $params                 = array();
+        $queryUrl           = $ddconfig['department_list'];
+        $params             = array();
         $params['access_token']         = $access_token;
-        $params['id']                          = $id;
-        $headers                   = array('Accept' => 'application/json');
-        $response                  = Request::get($queryUrl,$headers,$params);
-        $result                       = json_decode($response->raw_body,true);
+        $params['id']                   = $id;
+        $headers                        = array('Accept' => 'application/json');
+        $response                       = Request::get($queryUrl,$headers,$params);
+        $result                         = json_decode($response->raw_body,true);
         return $result;
     }
-    
+
     /**
      * 获取部门列表详情
      * @param string $id 部门id
@@ -34,18 +34,18 @@ class Department
      */
     public function list_detail($id)
     {
-        $ddconfig              = Config::getConfig();
+        $ddconfig           = Config::getConfig();
         $access_token       = AccessToken::getAccessToken();
-        $queryUrl               = $ddconfig['department_list_detail']."access_token=".$access_token;
-        $params                = array();
+        $queryUrl           = $ddconfig['department_list_detail']."access_token=".$access_token;
+        $params             = array();
         $params['access_token']         = $access_token;
-        $params['id']                          = $id;
-        $headers                   = array('Accept' => 'application/json');
-        $response                  = Request::get($queryUrl,$headers,$params);
-        $result                       = json_decode($response->raw_body,true);
+        $params['id']                   = $id;
+        $headers                        = array('Accept' => 'application/json');
+        $response                       = Request::get($queryUrl,$headers,$params);
+        $result                         = json_decode($response->raw_body,true);
         return $result;
     }
-    
-    
+
+
 }
 ?>

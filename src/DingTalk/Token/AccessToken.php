@@ -22,7 +22,7 @@ class AccessToken
 	    }
 	    return $accessToken;
 	}
-	
+
 	/**
 	 * 缓存中token
 	 * @return mixed|boolean
@@ -41,22 +41,22 @@ class AccessToken
 	    }
 	    return false;
 	}
-	
+
 	/**
 	 * 从钉钉服务器获取token令牌
 	 * @return boolean
 	 */
 	private static function _getAccessToken()
 	{
-	    $ddconfig                  = Config::getConfig();
+	    $ddconfig             = Config::getConfig();
 	    $queryUrl 				    = $ddconfig['gettoken_url'];
 	    $param["corpid"] 	    = $ddconfig['corpid'];
 	    $param["corpsecret"] 	= $ddconfig['corpsecret'];
-	    $headers                   = array('Accept' => 'application/json');
-	    $response                  = Request::get($queryUrl,$headers,$param);
-	    $result                       = $response->body;
-	    $result->time             = time();
-	    if (property_exists($result, "access_token")) 
+	    $headers              = array('Accept' => 'application/json');
+	    $response             = Request::get($queryUrl,$headers,$param);
+	    $result               = $response->body;
+	    $result->time         = time();
+	    if (property_exists($result, "access_token"))
 	    {
 	        $accessToken   = $result->access_token;
 	        // 此处通常会存入database / redis /memcached

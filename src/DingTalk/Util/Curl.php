@@ -17,11 +17,11 @@ class Curl {
 	private static $_ch;
 	private static $_header;
 	private static $_body;
-	
+
 	private static $_cookie = array();
-    private static $_options = array();
-    private static $_url = array ();
-    private static $_referer = array ();
+  private static $_options = array();
+  private static $_url = array ();
+  private static $_referer = array ();
 
     /**
      * 调用外部url
@@ -37,12 +37,12 @@ class Curl {
         $method = strtolower($method);
         $ret = '';
         $param = empty($param) ? array() : $param;
-           
+
         if(!isset(self::$_header))
         {
         	self::_init();
         }
-        
+
         if ($method == 'get') {
             $ret = self::_httpGet($queryUrl, $param);
         } elseif($method == 'post') {
@@ -71,25 +71,25 @@ class Curl {
     	self::_init();
 		foreach($optArray as $key=>$value) {
 			curl_setopt(self::$_ch, $key, $value);
-			self::$_header[$key] = $value; 
-		} 
+			self::$_header[$key] = $value;
+		}
 	}
-	
+
 	private static function _close() {
-		if (is_resource(self::$_ch)) {  
-            curl_close(self::$_ch);  
+		if (is_resource(self::$_ch)) {
+            curl_close(self::$_ch);
         }
-        
+
         return true;
 	}
-	
+
 	private static  function _httpGet($url, $query=array()) {
-          
-        if (!empty($query)) {  
-            $url .= (strpos($url, '?') === false) ? '?' : '&';  
-            $url .= is_array($query) ? http_build_query($query) : $query;  
-        }  
-          
+
+        if (!empty($query)) {
+            $url .= (strpos($url, '?') === false) ? '?' : '&';
+            $url .= is_array($query) ? http_build_query($query) : $query;
+        }
+
         curl_setopt(self::$_ch, CURLOPT_URL, $url);
         curl_setopt(self::$_ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt(self::$_ch, CURLOPT_HEADER, 0);
@@ -99,19 +99,19 @@ class Curl {
 
         $ret = self::_execute();
         self::_close();
-        return $ret;  
+        return $ret;
 	}
-	
+
 	private static  function _httpPost($url, $query=array(), $is_urlcode=true) {
   		if (is_array($query)) {
-            foreach ($query as $key => $val) {  
+            foreach ($query as $key => $val) {
 				if($is_urlcode){
                     $encode_key = urlencode($key);
                 }else{
                     $encode_key = $key;
                 }
-				if ($encode_key != $key) {  
-					unset($query[$key]);  
+				if ($encode_key != $key) {
+					unset($query[$key]);
 				}
                 if($is_urlcode){
                     $query[$encode_key] = urlencode($val);
@@ -119,9 +119,9 @@ class Curl {
                     $query[$encode_key] = $val;
                 }
 
-            }  
+            }
         }
-          
+
         curl_setopt(self::$_ch, CURLOPT_URL, $url);
         curl_setopt(self::$_ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt(self::$_ch, CURLOPT_HEADER, 0);
@@ -133,27 +133,27 @@ class Curl {
 
         $ret = self::_execute();
         self::_close();
-        return $ret;  
+        return $ret;
 	}
-	
+
 	private  function _put($url, $query = array()) {
-		curl_setopt(self::$_ch, CURLOPT_CUSTOMREQUEST, 'PUT');  
-	
+		curl_setopt(self::$_ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+
 		return self::_httpPost($url, $query);
-	}  
+	}
 
 	private static function _delete($url, $query = array()) {
-		curl_setopt(self::$_ch, CURLOPT_CUSTOMREQUEST, 'DELETE');  
-	
+		curl_setopt(self::$_ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+
 		return self::_httpPost($url, $query);
-	}  
+	}
 
 	private static function _head($url, $query = array()) {
 		curl_setopt(self::$_ch, CURLOPT_CUSTOMREQUEST, 'HEAD');
-		
+
 		return self::_httpPost($url, $query);
-	}  
-	
+	}
+
 	private static function _execute() {
 		$response = curl_exec(self::$_ch);
 		$errno = curl_errno(self::$_ch);
