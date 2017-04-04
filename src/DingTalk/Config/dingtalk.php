@@ -9,8 +9,8 @@ $ddconfig 	=  [
 		'appid' 				  =>'dingoapzw2ktnvznxzvxcb',//开放应用id
 		'appsecret'			  =>'OwXyIUQOHDh2vkpkHQqtAybwEks2tgyhE-P524ltKtyR-GIPK5AO7jumNIaRlIMC',//开放应用密匙
 
-    'suite_key'       =>'suitezsnwbtva3snuqpnb',// suite key 套件key
-    'suite_secret'    =>'IZPQLj570_fcTr55e1olqeq6SUxKaT1lsvkFdn1j_P2S6Si1SF_PRGYFYh1rRatU', // 套件 suite secret
+        'suite_key'       =>'suitezsnwbtva3snuqpnb',// suite key 套件key
+        'suite_secret'    =>'IZPQLj570_fcTr55e1olqeq6SUxKaT1lsvkFdn1j_P2S6Si1SF_PRGYFYh1rRatU', // 套件 suite secret
 
 		'get_sns_token_url'  	=>'https://oapi.dingtalk.com/sns/gettoken',//开放应用获取token url
 		'get_persistent_code'	=>'https://oapi.dingtalk.com/sns/get_persistent_code',
@@ -28,8 +28,8 @@ $ddconfig 	=  [
 		'user_list'						=>'https://oapi.dingtalk.com/user/list',//获取部门成员列表(带详细信息)
 		'user_getinfo' 				=>'https://oapi.dingtalk.com/user/get',//通过用户id获取用户信息
 		'user_getinfo_by_code'	=>'https://oapi.dingtalk.com/user/getuserinfo',//通过code获取用户信息
-    'get_userid_by_unionid'	=>'https://oapi.dingtalk.com/user/getUseridByUnionid', // 通过unionid 获取userid
-    'get_admin'             =>'https://oapi.dingtalk.com/user/get_admin', // 获取管理员列表
+        'get_userid_by_unionid'	=>'https://oapi.dingtalk.com/user/getUseridByUnionid', // 通过unionid 获取userid
+        'get_admin'             =>'https://oapi.dingtalk.com/user/get_admin', // 获取管理员列表
 		//微应用url
 		'microapp_visible_scopes'=>'https://oapi.dingtalk.com/microapp/visible_scopes',//微应用可见范围
 		'microapp_create'	=>'https://oapi.dingtalk.com/microapp/create',//创建微应用

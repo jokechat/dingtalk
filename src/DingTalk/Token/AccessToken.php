@@ -69,5 +69,31 @@ class AccessToken
 	    }
 	    return $accessToken;
 	}
+	
+	/**
+	 * 获取sns  access_token
+	 * @return string sns accessToken
+	 */
+	public static function getSnsAccessToken()
+	{
+	    $config                 = Config::getConfig();
+	    $queryUrl 				= $config['get_sns_token_url'];
+	    $param["appid"] 	= $config['appid'];
+	    $param["appsecret"] = $config['appsecret'];
+	    $param 					= http_build_query ($param);
+	    $headers               = array('Accept' => 'application/json');
+	    $queryUrl              = $queryUrl."?".$param;
+	    $response             = Request::get($queryUrl,$headers);
+	    $result                  = $response->body;
+	    if (property_exists($result, "access_token"))
+	    {
+	        // 此处通常会存入database / redis /memcached
+	        $accessToken   = $result->access_token;
+	    }else
+	    {
+	        $accessToken   = false;
+	    }
+	    return $accessToken;
+	}
 }
 ?>
