@@ -23,10 +23,10 @@ class Message
         if (is_array($userids)) {
             $userids    = implode("|", $userids);
         }
-        $ddconfig           = Config::getConfig();
-        $access_token       = AccessToken::getAccessToken();
-        $queryUrl           = $ddconfig['message_send'].'?access_token='.$access_token;
-        $params             = array();
+        $ddconfig                      = Config::getConfig();
+        $access_token                  = AccessToken::getAccessToken();
+        $queryUrl                      = $ddconfig['message_send'].'?access_token='.$access_token;
+        $params                        = array();
         $params['touser']              = $userids;
         $params['agentid']             = $agentid;
         $params['msgtype']             = $content['type'];
@@ -34,7 +34,7 @@ class Message
         // 设置请求头信息
         $headers[CURLOPT_HTTPHEADER]   = ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
         Curl::setOption($headers);
-        $result         = Curl::callWebServer($queryUrl,json_encode($params),"post");
+        $result                        = Curl::callWebServer($queryUrl,json_encode($params),"post");
         return $result;
     }
 
@@ -59,9 +59,9 @@ class Message
         $params['msgtype']              = $content['type'];
         $params[$content['type']]['content']      = $content['content'];
         // 设置请求头信息
-        $headers[CURLOPT_HTTPHEADER]  	 = ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
+        $headers[CURLOPT_HTTPHEADER]  	= ["Content-type: application/json;charset='utf-8'","Accept: application/json"];
         Curl::setOption($headers);
-        $result             = Curl::callWebServer($queryUrl,json_encode($params),"post");
+        $result                         = Curl::callWebServer($queryUrl,json_encode($params),"post");
         return $result;
     }
 }

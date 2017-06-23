@@ -23,17 +23,17 @@ class Media
      */
     public static function media_upload($media_type,$media_path)
     {
-        $ddconfig             = Config::getConfig();
-        $access_token         = AccessToken::getAccessToken();
-        $queryUrl 						= $ddconfig['media_upload'];
-        $param["access_token"]= AccessToken::getAccessToken();
-        $param['type'] 				= $media_type;
+        $ddconfig              = Config::getConfig();
+        $access_token          = AccessToken::getAccessToken();
+        $queryUrl 			       = $ddconfig['media_upload'];
+        $param["access_token"] = AccessToken::getAccessToken();
+        $param['type'] 		     = $media_type;
 
-        $headers              = array('Accept' => 'application/json');
-        $files                = array('media' => realpath($media_path));
-        $body                 = Body::Multipart($param,$files);
-        $response             = Request::post($queryUrl, $headers, $body);
-        $result               = json_decode($response->raw_body,true);
+        $headers               = array('Accept' => 'application/json');
+        $files                 = array('media' => realpath($media_path));
+        $body                  = Body::Multipart($param,$files);
+        $response              = Request::post($queryUrl, $headers, $body);
+        $result                = json_decode($response->raw_body,true);
         return $result;
     }
 }

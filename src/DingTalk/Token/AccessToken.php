@@ -48,14 +48,14 @@ class AccessToken
 	 */
 	private static function _getAccessToken()
 	{
-	    $ddconfig             = Config::getConfig();
-	    $queryUrl 				    = $ddconfig['gettoken_url'];
+	    $ddconfig            	= Config::getConfig();
+	    $queryUrl 				= $ddconfig['gettoken_url'];
 	    $param["corpid"] 	    = $ddconfig['corpid'];
 	    $param["corpsecret"] 	= $ddconfig['corpsecret'];
-	    $headers              = array('Accept' => 'application/json');
-	    $response             = Request::get($queryUrl,$headers,$param);
-	    $result               = $response->body;
-	    $result->time         = time();
+	    $headers              	= array('Accept' => 'application/json');
+	    $response             	= Request::get($queryUrl,$headers,$param);
+	    $result               	= $response->body;
+	    $result->time         	= time();
 	    if (property_exists($result, "access_token"))
 	    {
 	        $accessToken   = $result->access_token;
@@ -78,13 +78,13 @@ class AccessToken
 	{
 	    $config                 = Config::getConfig();
 	    $queryUrl 				= $config['get_sns_token_url'];
-	    $param["appid"] 	= $config['appid'];
-	    $param["appsecret"] = $config['appsecret'];
+	    $param["appid"] 		= $config['appid'];
+	    $param["appsecret"] 	= $config['appsecret'];
 	    $param 					= http_build_query ($param);
-	    $headers               = array('Accept' => 'application/json');
-	    $queryUrl              = $queryUrl."?".$param;
-	    $response             = Request::get($queryUrl,$headers);
-	    $result                  = $response->body;
+	    $headers                = array('Accept' => 'application/json');
+	    $queryUrl               = $queryUrl."?".$param;
+	    $response               = Request::get($queryUrl,$headers);
+	    $result                 = $response->body;
 	    if (property_exists($result, "access_token"))
 	    {
 	        // 此处通常会存入database / redis /memcached

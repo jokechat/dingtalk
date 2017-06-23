@@ -17,17 +17,17 @@ class Sns
      */
     public  function getSnsPersistentCode($tmp_auth_code)
     {
-        $ddconfig             = Config::getConfig();
-        $flag 							  = false;
-        $access_token 				= AccessToken::getSnsAccessToken();
+        $ddconfig           = Config::getConfig();
+        $flag 				      = false;
+        $access_token 		  = AccessToken::getSnsAccessToken();
 
-        $queryUrl 						    = $ddconfig['get_persistent_code'];
-        $param["tmp_auth_code"] 	= $tmp_auth_code;
-        $param['access_token']    = $access_token;
-        $headers['10023']  				= self::$headers;
+        $queryUrl 			    = $ddconfig['get_persistent_code'];
+        $param["tmp_auth_code"] = $tmp_auth_code;
+        $param['access_token']  = $access_token;
+        $headers['10023']  			= self::$headers;
         curl::setOption($headers);
         $queryUrl             = $queryUrl.http_build_query($param);
-        $auth_info 						= Curl::callWebServer($queryUrl,json_encode($param),'POST',true);
+        $auth_info 			      = Curl::callWebServer($queryUrl,json_encode($param),'POST',true);
         if ($auth_info['errcode'] ==  0)
         {
             $flag 	= $auth_info ;
@@ -49,17 +49,17 @@ class Sns
      */
     public  function getSnsToken($openid,$persistent_code)
     {
-        $access_token 				= AccessToken::getSnsAccessToken();
+        $access_token 		    = AccessToken::getSnsAccessToken();
         $config               = Config::getConfig();
         $ddconfig             = $config['params']['dd'];
-        $queryUrl 						= $ddconfig['get_sns_token']."access_token=$access_token";
-        $param["openid"] 			= $openid;
+        $queryUrl 			      = $ddconfig['get_sns_token']."access_token=$access_token";
+        $param["openid"] 	    = $openid;
         $param["persistent_code"] = $persistent_code;
 
-        $headers['10023']  			= self::$headers;
+        $headers['10023']  	  = self::$headers;
         curl::setOption($headers);
 
-        $snsToken 					= Curl::callWebServer($queryUrl,json_encode($param),'POST');
+        $snsToken 			      = Curl::callWebServer($queryUrl,json_encode($param),'POST');
         return $snsToken;
     }
 
@@ -72,8 +72,8 @@ class Sns
     public static function getSnsUserInfo($sns_token)
     {
         $ddconfig             = Config::getConfig();
-        $queryUrl 						= $ddconfig['sns_getuserinfo']."sns_token=$sns_token";
-        $sns_userinfo 				= Curl::callWebServer($queryUrl);
+        $queryUrl 			      = $ddconfig['sns_getuserinfo']."sns_token=$sns_token";
+        $sns_userinfo 		    = Curl::callWebServer($queryUrl);
         return $sns_userinfo;
     }
 }
