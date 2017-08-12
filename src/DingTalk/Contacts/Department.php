@@ -13,7 +13,7 @@ class Department
      * 查询成功时 返回数据如下
      * {"department":[{"autoAddUser":false,"createDeptGroup":false,"id":16175771,"name":"1231","parentid":1}],"errcode":0,"errmsg":"ok"}
      */
-    public function list($id)
+    public function getList($id)
     {
         $ddconfig               = Config::getConfig();
         $access_token           = AccessToken::getAccessToken();

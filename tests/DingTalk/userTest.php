@@ -13,7 +13,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     public function testlist()
     {
         $user       = new User();
-        $list         = $user->list('1');
+        $list         = $user->getList('1');
         $this->assertArrayHasKey("name", $list['userlist'][0]);
     }
     

@@ -52,7 +52,7 @@ class User
      *                                 <li> custom代表用户定义(未定义时按照拼音)排序</li>
      * @return boolean|mixed
      */
-    public function list($department_id,$offset = 0,$size = 20,$order = "entry_asc")
+    public function getList($department_id,$offset = 0,$size = 20,$order = "entry_asc")
     {
         $ddconfig           = Config::getConfig();
         $access_token       = AccessToken::getAccessToken();
