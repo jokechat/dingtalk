@@ -3,7 +3,8 @@
     "description": "dingtalk library",
     "type": "library",
     "require": {
-        "mashape/unirest-php": "3.*"
+        "mashape/unirest-php": "3.*",
+        "satooshi/php-coveralls": "^1.0"
     },
     "license": "MIT",
     "minimum-stability": "dev",
